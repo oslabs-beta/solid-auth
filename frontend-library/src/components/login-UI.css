@@ -1,11 +1,11 @@
-.loginFormContainer {
+  .loginFormContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     padding: 20px;
     background-color: grey;
-}
+ }
 
  .loginBox {
     display: flex;
@@ -15,12 +15,10 @@
     max-width: 400px;
     padding: 30px;
     border: 5px solid #ddd;
-    /* border: 5px solid rgb(43, 218, 43); */
     border-radius: 8px;
-    /* background-color: #f9f9f9; */
     background-color: rgba(0, 0, 0, 0.829);
     box-shadow: 10px 10px 5px rgb(43, 218, 43);
-}
+ }
 
  .log-in-button {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -41,21 +39,23 @@
     text-align: center;
     transition: background-color 0.3s ease;
     margin-top: 20px;
-}
+  }
 
   .log-in-button:hover {
     transform: scale(1.05);
     background-color: #0056b3;
-}
+  }
 
   .google-button {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 5px;
+    display: block;
     width: 100%;
     max-width: 300px;
     padding: 12px;
     border-radius: 50px;
     border: 1px solid #ccc;
-    background-color: #FFF;
+    background-color: #fff;
     color: black;
     font-size: 16px;
     font-weight: bold;
@@ -64,15 +64,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     transition: background-color 0.3s ease;
-    margin-top: 2px;
-    display: block;
-    margin-bottom: 10px;
-}
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
 
   .google-button:hover {
     transform: scale(1.05);
-    background-color: #d3d1d1;
-}
+    background-color: #c5c3c3;
+  }
 
   .google-logo {
     width: 20px;
@@ -80,7 +79,7 @@
     margin-left: -15px;
     margin-right: 25px;
     vertical-align: middle;
-}
+  }
 
 
   .form-control {
@@ -94,17 +93,17 @@
     box-sizing: border-box;
     margin-bottom: 20px;
     background-color: #e6ddddcb;
-}
+  }
 
   .form-control:focus {
     border-color: rgb(43, 218, 43);
     box-shadow: 0 0 0 2px rgb(43, 218, 43);
     outline: none;
-}
+  }
 
   .form-control::placeholder {
     color: #424141;
-}
+  }
 
   .form-control-group {
     width: 100%;
@@ -116,13 +115,13 @@
     transition: border-color 0.3s ease;
     box-sizing: border-box;
     margin-bottom: 20px;
-}
+  }
 
   .password-container {
     position: relative;
     width: 100%;
     max-width: 300px;
-}
+  }
 
   .hide-logo {
     position: absolute;
@@ -133,7 +132,7 @@
     height: 25px;
     cursor: pointer;
     margin-top: -10px;
-}
+  }
 
   .lineBreak {
     width: 100%;
@@ -141,7 +140,7 @@
     height: 1px;
     background-color: #ddd;
     margin: 10px 0;
-}
+  }
 
   .signInText {
     font-family: Arial, sans-serif;
@@ -151,13 +150,13 @@
     margin-bottom: 30px;
     margin-top: 10px;
     font-weight: bold;
-}
+  }
 
   .login-image img {
     width: 100%;
     max-width: 200px;
     margin-bottom: 20px;
-}
+  }
 
   .lineBreakContainer {
     display: flex;
@@ -166,7 +165,7 @@
     text-align: center;
     margin: 10px 0;
     position: relative;
-}
+  }
 
   .lineBreakText {
     padding: 0 10px;
@@ -174,7 +173,7 @@
     color: #333;
     background: #f9f9f9;
     white-space: nowrap;
-}
+  }
 
   .newUserLine {
     display: flex;
@@ -182,19 +181,19 @@
     align-items: center;
     margin-top: 20px;
     margin-top: 30px;
-}
+  }
 
   .newUserLine p {
     margin: 0;
     margin-right: 10px;
     color: white;
-}
+  }
 
   .newUserLine a {
     color: #007bff;
     text-decoration: none;
-}
+  }
 
   .newUserLine a:hover {
     text-decoration: underline;
-}
+  }

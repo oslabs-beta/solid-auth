@@ -1,9 +1,9 @@
+import './login-UI.css';
 import { Component, createSignal } from 'solid-js';
 import solidLogo from '/solid-auth-logo.png.png';
 import googleLogo from '/google.png';
 import hideLogo from '/hide.png';
 import { useNavigate } from '@solidjs/router';
-import './login-ui.css';
 
 const LoginForm: Component = () => {
 
