@@ -1,0 +1,17 @@
+//shared TypeScript configuration for all packages.
+
+{
+  "compilerOptions": {
+    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "CommonJS",                                /* Specify what module code is generated. */
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
+    "jsx": "preserve",
+    "removeComments": true,
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    //"noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */    
+    "strict": true,                                    /*enables strict type-checking options. a shortcut that turns on the following settings: noImplicitAny, strictNullChecks,strictFunctionTypes, etc */
+  },
+    "include": ["packages/**/*", "test-folder/**/*"],
+    "exlude": ["node_modules"]
+}
