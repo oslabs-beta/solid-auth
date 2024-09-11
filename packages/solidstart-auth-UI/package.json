@@ -1,0 +1,15 @@
+{
+  "name": "@solid-auth/solidstart-auth-ui",
+  "version": "1.0.0",
+  "description": "Front end login UI components for SolidStartJS.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "keywords": [
+    "solidstart"
+  ],
+  "author": "Solid Auth",
+  "license": "ISC"
+}
