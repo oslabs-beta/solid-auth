@@ -6,8 +6,10 @@
     "compilerOptions": {
         "outDir": "./dist",
         "jsx": "preserve",
+        "jsxImportSource": "solid-js",
         "declaration": true,
         "emitDeclarationOnly": false,
+        "types": ["solid-js", "node"],
     },
     "include": ["src/**/*"]
 }
