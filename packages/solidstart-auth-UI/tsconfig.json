@@ -4,7 +4,10 @@
 {
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "jsx": "preserve",
+        "declaration": true,
+        "emitDeclarationOnly": false,
     },
-    "include": ["index.ts"]
+    "include": ["src/**/*"]
 }
