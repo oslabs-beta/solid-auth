@@ -7,7 +7,7 @@ import googleLogo from '/google.png';
 import hideLogo from '/hide.png';
 import { useNavigate } from '@solidjs/router';
 
-const LoginForm: Component = () => {
+export const LoginForm: Component = () => {
 
     const [loginStatus, setLoginStatus] = createSignal(null)
     const [loginInput, setLoginInput] = createSignal({
@@ -53,4 +53,4 @@ const LoginForm: Component = () => {
 
 
 
-export default LoginForm;
+//export LoginForm;
