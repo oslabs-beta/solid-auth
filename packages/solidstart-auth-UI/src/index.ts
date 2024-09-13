@@ -1,4 +1,3 @@
-import UsernameAndPassword from "./components/UsernameAndPassword";
 
-export { UsernameAndPassword }
 
+export { LoginForm } from './components/login-UI'
