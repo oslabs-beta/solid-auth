@@ -1,0 +1,70 @@
+{
+  "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/auth-logo.png": {
+    "file": "assets/auth-logo-Bwvg09ZW.png",
+    "src": "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/auth-logo.png"
+  },
+  "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/google.png": {
+    "file": "assets/google-Bp_336oh.png",
+    "src": "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/google.png"
+  },
+  "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/hide.png": {
+    "file": "assets/hide-CcLQG700.png",
+    "src": "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/hide.png"
+  },
+  "_index-DbjfwbOx.js": {
+    "file": "assets/index-DbjfwbOx.js",
+    "name": "index"
+  },
+  "src/routes/[...404].tsx?pick=default&pick=$css": {
+    "file": "_...404_.js",
+    "name": "_...404_",
+    "src": "src/routes/[...404].tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true
+  },
+  "src/routes/index.tsx?pick=default&pick=$css": {
+    "file": "index.js",
+    "name": "index",
+    "src": "src/routes/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-DbjfwbOx.js"
+    ]
+  },
+  "src/routes/login.tsx?pick=default&pick=$css": {
+    "file": "login.js",
+    "name": "login",
+    "src": "src/routes/login.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-DbjfwbOx.js"
+    ]
+  },
+  "virtual:$vinxi/handler/ssr": {
+    "file": "ssr.js",
+    "name": "ssr",
+    "src": "virtual:$vinxi/handler/ssr",
+    "isEntry": true,
+    "imports": [
+      "_index-DbjfwbOx.js"
+    ],
+    "dynamicImports": [
+      "src/routes/[...404].tsx?pick=default&pick=$css",
+      "src/routes/[...404].tsx?pick=default&pick=$css",
+      "src/routes/index.tsx?pick=default&pick=$css",
+      "src/routes/index.tsx?pick=default&pick=$css",
+      "src/routes/login.tsx?pick=default&pick=$css",
+      "src/routes/login.tsx?pick=default&pick=$css"
+    ],
+    "css": [
+      "assets/ssr-BYLN711c.css"
+    ],
+    "assets": [
+      "assets/auth-logo-Bwvg09ZW.png",
+      "assets/google-Bp_336oh.png",
+      "assets/hide-CcLQG700.png"
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/auth-logo.png": {
+    "file": "assets/auth-logo-Bwvg09ZW.png",
+    "src": "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/auth-logo.png"
+  },
+  "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/google.png": {
+    "file": "assets/google-Bp_336oh.png",
+    "src": "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/google.png"
+  },
+  "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/hide.png": {
+    "file": "assets/hide-CcLQG700.png",
+    "src": "../packages/solidstart-auth-backend-v3/src/components/LoginForm/images/hide.png"
+  },
+  "_index-BSgOKi0E.js": {
+    "file": "assets/index-BSgOKi0E.js",
+    "name": "index",
+    "imports": [
+      "_web-BZwEqE-T.js"
+    ]
+  },
+  "_web-BZwEqE-T.js": {
+    "file": "assets/web-BZwEqE-T.js",
+    "name": "web"
+  },
+  "src/routes/[...404].tsx?pick=default&pick=$css": {
+    "file": "assets/_...404_-DfwnSqRb.js",
+    "name": "_...404_",
+    "src": "src/routes/[...404].tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "imports": [
+      "_web-BZwEqE-T.js"
+    ]
+  },
+  "src/routes/index.tsx?pick=default&pick=$css": {
+    "file": "assets/index-DYNFtd-j.js",
+    "name": "index",
+    "src": "src/routes/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "imports": [
+      "_web-BZwEqE-T.js",
+      "_index-BSgOKi0E.js"
+    ]
+  },
+  "src/routes/login.tsx?pick=default&pick=$css": {
+    "file": "assets/login-BYDnqFuM.js",
+    "name": "login",
+    "src": "src/routes/login.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "imports": [
+      "_web-BZwEqE-T.js",
+      "_index-BSgOKi0E.js"
+    ]
+  },
+  "virtual:$vinxi/handler/client": {
+    "file": "assets/client-Ci-0MQDq.js",
+    "name": "client",
+    "src": "virtual:$vinxi/handler/client",
+    "isEntry": true,
+    "imports": [
+      "_web-BZwEqE-T.js"
+    ],
+    "css": [
+      "assets/client-BYLN711c.css"
+    ],
+    "assets": [
+      "assets/auth-logo-Bwvg09ZW.png",
+      "assets/google-Bp_336oh.png",
+      "assets/hide-CcLQG700.png"
+    ]
+  }
+}
