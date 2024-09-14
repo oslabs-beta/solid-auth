@@ -1,1 +1,0 @@
-{"name":"example-with-auth-prod","version":"0.0.0","type":"module","private":true,"dependencies":{"pathe":"1.1.2","seroval":"1.1.1","seroval-plugins":"1.1.1","solid-js":"1.8.22","std-env":"3.7.0","vinxi":"0.4.2"}}
