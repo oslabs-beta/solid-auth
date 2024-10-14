@@ -14,6 +14,11 @@
   "license": "ISC",
   "devDependencies": {
     "vite": "^5.4.4",
-    "vite-plugin-solid": "^2.10.2"
+    "vite-plugin-solid": "^2.10.2",
+    "vinxi": "^0.4.0"
+  },
+  "peerDependencies": {
+    "vinxi": "^0.4.0",
+    "solid-js": "^1.8.0"
   }
 }
