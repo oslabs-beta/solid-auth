@@ -11,7 +11,9 @@ type UseSessionFn = (options: SessionOptions) => Promise<{
 }>;
 
 export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
+  // 'use server';
   const getSession = async (): Promise<Session> => {
+    // 'use server';
     const session = await useSessionFn({
       password:
         process.env.SESSION_SECRET ?? 'areallylongsecretthatyoushouldreplace',
@@ -39,8 +41,9 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
     login: async (
       username: string,
       password: string,
-      userLookupFunction: (username: string) => Promise<User | null>
+      userLookupFunction: (username: string) => Promise<User | undefined>
     ): Promise<User> => {
+      'use server';
       const user = await userLookupFunction(username);
       if (!user || password !== user.password) {
         throw new Error('Invalid login');
@@ -50,9 +53,10 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
     register: async (
       username: string,
       password: string,
-      userLookupFunction: (username: string) => Promise<User | null>,
+      userLookupFunction: (username: string) => Promise<User | undefined>,
       userCreateFunction: (username: string, password: string) => Promise<User>
     ): Promise<User> => {
+      // 'use server';
       const existingUser = await userLookupFunction(username);
       if (existingUser) {
         throw new Error('User already exists');
@@ -60,6 +64,7 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
       return userCreateFunction(username, password);
     },
     logout: async () => {
+      // 'use server';
       const session = await getSession();
       if (session?.data.userId) {
         await session.update((d) => {
@@ -68,12 +73,14 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
       }
     },
     validateUsername: (username: unknown): string | undefined => {
+      // 'use server';
       if (typeof username !== 'string' || username.length < 3) {
         return `Usernames must be at least 3 characters long`;
       }
       return undefined;
     },
     validatePassword: (password: unknown): string | undefined => {
+      // 'use server';
       if (typeof password !== 'string' || password.length < 6) {
         return `Passwords must be at least 6 characters long`;
       }
