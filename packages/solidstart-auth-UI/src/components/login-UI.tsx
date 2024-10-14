@@ -2,10 +2,9 @@
 
 import './login-UI.css';
 import { Component, createSignal } from 'solid-js';
-import solidLogo from '/solid-auth-logo.png';
-import googleLogo from '/google.png';
-import hideLogo from '/hide.png';
-import { useNavigate } from '@solidjs/router';
+import solidLogo from '../../public/solid-auth-logo.png';
+import googleLogo from '../../public/google.png';
+import hideLogo from '../../public/hide.png';
 
 export const LoginForm: Component = () => {
 
@@ -14,8 +13,6 @@ export const LoginForm: Component = () => {
         usernameInput: '',
         passwordInput: '',
     });
-
-    // const navigate = useNavigate();
 
     return (
         <div class="loginFormContainer">
@@ -51,6 +48,3 @@ export const LoginForm: Component = () => {
     };
 
 
-
-
-//export LoginForm;

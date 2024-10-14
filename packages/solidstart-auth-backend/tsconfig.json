@@ -5,6 +5,11 @@
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
         "outDir": "./dist",
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js",
+        "declaration": true,
+        "emitDeclarationOnly": false,
+        "types": ["solid-js", "node"],
     },
-    "include": ["index.ts"]
+    "include": ["src/**/*", "public/**/*"]
 }
