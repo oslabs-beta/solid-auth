@@ -1,4 +1,6 @@
 import { AuthCallbacks, User, Session } from './authTypes';
+import bcrypt  from 'bcrypt';
+
 
 type SessionOptions = {
   password: string;
@@ -54,13 +56,15 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
       username: string,
       password: string,
       userLookupFunction: (username: string) => Promise<User | undefined>,
-      userCreateFunction: (username: string, password: string) => Promise<User>
+      userCreateFunction: (username: string, password: string) => Promise<User>,
+      useBcrypt: boolean = true
     ): Promise<User> => {
       // 'use server';
       const existingUser = await userLookupFunction(username);
       if (existingUser) {
         throw new Error('User already exists');
       }
+      if (bcrypt) password = await bcrypt.hash(password, 12);
       return userCreateFunction(username, password);
     },
     logout: async () => {
