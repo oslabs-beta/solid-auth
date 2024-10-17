@@ -11,5 +11,5 @@
         "emitDeclarationOnly": false,
         "types": ["solid-js", "node"],
     },
-    "include": ["src/**/*", "public/**/*"]
+    "include": ["src/**/*", "./"]
 }
