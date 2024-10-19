@@ -18,7 +18,8 @@ export interface AuthCallbacks {
   login: (
     username: string,
     password: string,
-    userLookupFunction: (username: string) => Promise<User | undefined>
+    userLookupFunction: (username: string) => Promise<User | undefined>,
+    useBcrypt: boolean
   ) => Promise<User>;
   register: (
     username: string,

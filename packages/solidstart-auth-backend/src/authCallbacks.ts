@@ -43,13 +43,25 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
     login: async (
       username: string,
       password: string,
-      userLookupFunction: (username: string) => Promise<User | undefined>
+      userLookupFunction: (username: string) => Promise<User | undefined>,
+      useBcrypt: boolean = true
     ): Promise<User> => {
       'use server';
       const user = await userLookupFunction(username);
-      if (!user || password !== user.password) {
-        throw new Error('Invalid login');
+
+      if (!user) {
+        throw new Error('User not found');
       }
+
+      if (!useBcrypt) {
+        if (password !== user.password) {
+          throw new Error('Invalid login');
+        }
+      } else {
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) throw new Error('Invalid login credentials');
+      }
+
       return user;
     },
     register: async (
@@ -64,7 +76,8 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
       if (existingUser) {
         throw new Error('User already exists');
       }
-      if (bcrypt) password = await bcrypt.hash(password, 12);
+      if (useBcrypt) password = await bcrypt.hash(password, 12);
+      console.log('Hello!', bcrypt)
       return userCreateFunction(username, password);
     },
     logout: async () => {
