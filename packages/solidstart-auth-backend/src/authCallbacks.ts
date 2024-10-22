@@ -1,6 +1,5 @@
 import { AuthCallbacks, User, Session } from './authTypes';
-import bcrypt  from 'bcrypt';
-
+import bcrypt from 'bcrypt';
 
 type SessionOptions = {
   password: string;
@@ -77,7 +76,7 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
         throw new Error('User already exists');
       }
       if (useBcrypt) password = await bcrypt.hash(password, 12);
-      console.log('Hello!', bcrypt)
+      console.log('Hello!', bcrypt);
       return userCreateFunction(username, password);
     },
     logout: async () => {
