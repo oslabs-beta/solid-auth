@@ -10,19 +10,16 @@ type UseSessionFn = (options: SessionOptions) => Promise<{
   clear: () => Promise<void>;
 }>;
 
-type HashingLib =
+type HashingFunctions =
   | {
-      hash(
-        data: string | Buffer,
-        saltOrRounds: string | number
-      ): Promise<string>;
-      compare(data: string | Buffer, encrypted: string): Promise<boolean>;
+      hash: (password: string) => Promise<string>;
+      compare: (password: string, hashedPassword: string) => Promise<boolean>;
     }
   | undefined;
 
 export function createAuthCallbacks(
   useSessionFn: UseSessionFn,
-  hashingLib: HashingLib = undefined
+  hashingFunctions: HashingFunctions = undefined
 ): AuthCallbacks {
   const getSession = async (): Promise<Session> => {
     const session = await useSessionFn({
@@ -59,12 +56,12 @@ export function createAuthCallbacks(
       if (!user) {
         throw new Error('User not found');
       }
-      if (!hashingLib) {
+      if (!hashingFunctions) {
         if (password !== user.password) {
           throw new Error('Invalid login');
         }
       } else {
-        const isPasswordValid = await hashingLib.compare(
+        const isPasswordValid = await hashingFunctions.compare(
           password,
           user.password
         );
@@ -83,7 +80,7 @@ export function createAuthCallbacks(
       if (existingUser) {
         throw new Error('User already exists');
       }
-      if (hashingLib) password = await hashingLib.hash(password, 12);
+      if (hashingFunctions) password = await hashingFunctions.hash(password);
 
       return userCreateFunction(username, password);
     },
