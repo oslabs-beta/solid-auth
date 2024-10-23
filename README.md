@@ -1,30 +1,29 @@
 # solid-auth
 
-Using npm link with an external app
+## Server
 
-To link both of the packages (recommended):
+This should be a basic description of the server package.
 
-Navigate to the packages directory in solid-auth
-Run the command: npm link @solid-auth/solidstart-auth-ui @solid-auth/solidstart-auth-backend
+[Server README](./packages/server/README.md)
 
-*Note* You can check that this was successful by looking at the node_modules folder. Scroll through the list until you find @solid-auth. Click on it to make sure both packages are listed. 
+## UI
 
-Navigate to your test app (solid-start-demo)
-From the root directory, run the command:
+This should be a basic description of the UI package.
 
-npm link @solid-auth/solidstart-auth-ui @solid-auth/solidstart-auth-backend
+[Server README](./packages/UI/README.md)
 
-*Note* check the node_modules folder to ensure these were linked
+## Dev setup
 
-Navigate to your test file or create the file where you want to use these packages
-Require in both packages 
-Execute the file using node <testfile name>
+### Using npm link with an external app
 
+#### In solid-auth (this repo):
 
+Navigate to `packages/server` or `packages/ui` and run `npm link` (do both to link both packages)
 
-*Note*
-The package name needs to be listed after 'npm link'. This can be found in the package.json file within that package. It is NOT the same as the name of the directory.
+_Note_ You can check that this was successful by looking at the node_modules folder. Scroll through the list until you find @solid-auth. Click on it to make sure both packages are listed.
 
+#### In your app (external repo):
 
+From root, run: `npm link @solid-auth/server @solid-auth/ui`
 
-
+_Note_ check the node_modules folder to ensure these were linked
