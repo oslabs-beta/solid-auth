@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
     padding: 20px;
-    background-color: grey;
+    background-color: #f8fafc
  }
 
  .loginBox {
@@ -16,8 +16,8 @@
     padding: 30px;
     border: 5px solid #ddd;
     border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.829);
-    box-shadow: 10px 10px 5px rgb(43, 218, 43);
+    background-color: #f8fafc;
+    box-shadow: 10px 10px 5px #6b7280;
  }
 
  .log-in-button {
@@ -29,7 +29,7 @@
     padding: 12px;
     border-radius: 50px;
     border: 1px solid #ccc;
-    background-color: #007bff;
+    background-color: #6b7280;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
