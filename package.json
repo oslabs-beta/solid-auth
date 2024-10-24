@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "solid-js": "^1.8.22",
-    "solid-start": "^0.3.11",
     "vinxi": "^0.4.3",
     "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-plugin-solid": "^2.10.2"
