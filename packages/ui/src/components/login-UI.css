@@ -4,7 +4,7 @@
   align-items: center;
   height: 100vh;
   padding: 20px;
-  background-color: grey;
+  background-color: #f8fafc;
 }
 
 .loginBox {
@@ -14,10 +14,10 @@
   width: 100%;
   max-width: 400px;
   padding: 30px;
-  border: 5px solid #ddd;
+  border: 5px solid #f8fafc;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.829);
-  box-shadow: 10px 10px 5px rgb(43, 218, 43);
+  box-shadow: 10px 10px 5px #f8fafc(43, 218, 43);
 }
 
 .log-in-button {
@@ -95,8 +95,8 @@
 }
 
 .form-control:focus {
-  border-color: rgb(43, 218, 43);
-  box-shadow: 0 0 0 2px rgb(43, 218, 43);
+  border-color: #f8fafc(43, 218, 43);
+  box-shadow: 0 0 0 2px #f8fafc(43, 218, 43);
   outline: none;
 }
 
