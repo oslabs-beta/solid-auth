@@ -26,7 +26,8 @@
   "author": "Solid Auth",
   "license": "ISC",
   "dependencies": {
-    "solid-js": "^1.8.22"
+    "solid-js": "^1.8.22",
+    "vite-plugin-css-injected-by-js": "^3.5.2"
   },
   "devDependencies": {
     "vite": "^5.4.4",
