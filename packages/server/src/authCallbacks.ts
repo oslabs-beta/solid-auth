@@ -10,10 +10,18 @@ type UseSessionFn = (options: SessionOptions) => Promise<{
   clear: () => Promise<void>;
 }>;
 
-export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
-  // 'use server';
+type HashingFunctions =
+  | {
+      hash: (password: string) => Promise<string>;
+      compare: (password: string, hashedPassword: string) => Promise<boolean>;
+    }
+  | undefined;
+
+export function createAuthCallbacks(
+  useSessionFn: UseSessionFn,
+  hashingFunctions: HashingFunctions = undefined
+): AuthCallbacks {
   const getSession = async (): Promise<Session> => {
-    // 'use server';
     const session = await useSessionFn({
       password:
         process.env.SESSION_SECRET ?? 'areallylongsecretthatyoushouldreplace',
@@ -33,7 +41,6 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
     };
   };
 
-  // TODO: Implement error handling for invalid login and user exists
   // TODO: Make username and password validation rules configurable
 
   const authCallbacks: AuthCallbacks = {
@@ -43,11 +50,24 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
       password: string,
       userLookupFunction: (username: string) => Promise<User | undefined>
     ): Promise<User> => {
-      'use server';
+      ('use server');
       const user = await userLookupFunction(username);
-      if (!user || password !== user.password) {
-        throw new Error('Invalid login');
+
+      if (!user) {
+        throw new Error('User not found');
       }
+      if (!hashingFunctions) {
+        if (password !== user.password) {
+          throw new Error('Invalid login');
+        }
+      } else {
+        const isPasswordValid = await hashingFunctions.compare(
+          password,
+          user.password
+        );
+        if (!isPasswordValid) throw new Error('Invalid login credentials');
+      }
+
       return user;
     },
     register: async (
@@ -56,15 +76,15 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
       userLookupFunction: (username: string) => Promise<User | undefined>,
       userCreateFunction: (username: string, password: string) => Promise<User>
     ): Promise<User> => {
-      // 'use server';
       const existingUser = await userLookupFunction(username);
       if (existingUser) {
         throw new Error('User already exists');
       }
+      if (hashingFunctions) password = await hashingFunctions.hash(password);
+
       return userCreateFunction(username, password);
     },
     logout: async () => {
-      // 'use server';
       const session = await getSession();
       if (session?.data.userId) {
         await session.update((d) => {
@@ -73,14 +93,12 @@ export function createAuthCallbacks(useSessionFn: UseSessionFn): AuthCallbacks {
       }
     },
     validateUsername: (username: unknown): string | undefined => {
-      // 'use server';
       if (typeof username !== 'string' || username.length < 3) {
         return `Usernames must be at least 3 characters long`;
       }
       return undefined;
     },
     validatePassword: (password: unknown): string | undefined => {
-      // 'use server';
       if (typeof password !== 'string' || password.length < 6) {
         return `Passwords must be at least 6 characters long`;
       }

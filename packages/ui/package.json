@@ -1,5 +1,5 @@
 {
-  "name": "@solid-auth/solidstart-auth-ui",
+  "name": "@solid-auth/ui",
   "version": "1.0.0",
   "description": "Front end login UI components for SolidStartJS.",
   "main": "./dist/index.js",
@@ -16,7 +16,9 @@
     }
   },
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "module": "./dist/index.mjs",
   "keywords": [
     "solidstart"
@@ -25,11 +27,10 @@
   "license": "ISC",
   "dependencies": {
     "solid-js": "^1.8.22",
-    "solid-start": "^0.3.11"
+    "vite-plugin-css-injected-by-js": "^3.5.2"
   },
   "devDependencies": {
     "vite": "^5.4.4",
     "vite-plugin-solid": "^2.10.2"
   }
 }
-
