@@ -10,7 +10,9 @@ export interface Session {
 export interface User {
   id: number;
   username: string;
-  password: string;
+  password?: string | undefined;
+  email?: string;
+  provider?: string;
 }
 
 export interface AuthCallbacks {
