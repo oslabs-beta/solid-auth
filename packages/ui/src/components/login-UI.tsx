@@ -1,25 +1,25 @@
-import "./login-UI.css";
-import { Component, createSignal, onMount, Show } from "solid-js";
-import solidLogo from "../../public/solid-auth-logo.png";
-import googleLogo from "../../public/google.png";
-import hideLogo from "../../public/hide.png";
+import './login-UI.css';
+import { Component, createSignal, onMount, Show } from 'solid-js';
+import solidLogo from '../../public/solid-auth-logo.png';
+import googleLogo from '../../public/google.png';
+import hideLogo from '../../public/hide.png';
 
 export const LoginForm: Component = () => {
   const [loginStatus, setLoginStatus] = createSignal(null);
   const [loginInput, setLoginInput] = createSignal({
-    usernameInput: "",
-    passwordInput: "",
+    usernameInput: '',
+    passwordInput: '',
   });
 
   const [isClient, setIsClient] = createSignal(false);
 
   onMount(() => {
-    if (typeof window !== 'undefined'){
-      setIsClient(true)
+    if (typeof window !== 'undefined') {
+      setIsClient(true);
     }
   });
 
-  return(
+  return (
     <Show when={isClient()}>
       <div class="loginFormContainer">
         <form class="loginBox">
@@ -58,6 +58,6 @@ export const LoginForm: Component = () => {
           </div>
         </form>
       </div>
-      </Show>
-    );
-  };
+    </Show>
+  );
+};
