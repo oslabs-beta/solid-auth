@@ -4,7 +4,6 @@ import solidPlugin from 'vite-plugin-solid';
 import { resolve } from 'path';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
-
 export default defineConfig({
   plugins: [solidPlugin(), cssInjectedByJsPlugin()],
   build: {
@@ -13,7 +12,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'SolidStartAuthUI',
       // the proper extensions will be added
-      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`
+      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -24,9 +23,10 @@ export default defineConfig({
         // for externalized deps
         globals: {
           'solid-js': 'Solid',
-          'solid-start': 'SolidStart'
+          'solid-start': 'SolidStart',
         },
       },
     },
   },
-})
+  publicDir: 'public',
+});

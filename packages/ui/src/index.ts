@@ -1,1 +1,1 @@
-export { LoginForm } from './components/login-UI';
+export { LoginFormLight } from './components/login-signup-light/Login-UI-light';

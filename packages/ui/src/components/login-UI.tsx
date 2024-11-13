@@ -1,18 +1,10 @@
-import './login-UI-light.css';
+import './login-UI.css';
 import { Component, createSignal, onMount, Show } from 'solid-js';
-// import solidLogo from '/public/solid-auth-logo.png';
-// import googleLogo from '/public/google.png';
-// import hideLogo from '/public/hide.png';
+import solidLogo from '../../public/solid-auth-logo.png';
+import googleLogo from '../../public/google.png';
+import hideLogo from '../../public/hide.png';
 
-// interface LoginFormLightProps {
-//   handleCreateNewUser: () => void;
-// }
-
-const clickFunc = () => {
-  console.log('I clicked');
-};
-
-export const LoginFormLight: Component = () => {
+export const LoginForm: Component = () => {
   const [loginStatus, setLoginStatus] = createSignal(null);
   const [loginInput, setLoginInput] = createSignal({
     usernameInput: '',
@@ -32,8 +24,7 @@ export const LoginFormLight: Component = () => {
       <div class="loginFormContainer">
         <form class="loginBox">
           <div class="login-image">
-            {/* <img src={solidLogo} alt="solidLogo" /> */}
-            <h1>Your Logo Here</h1>
+            <img src={solidLogo} alt="solidLogo" />
           </div>
           <h2 class="signInText">Sign In</h2>
 
@@ -50,21 +41,20 @@ export const LoginFormLight: Component = () => {
               type="password"
               placeholder="Password"
             />
-            {/* <img src={hideLogo} alt="hide logo" class="hide-logo" /> */}
+            <img src={hideLogo} alt="hide logo" class="hide-logo" />
           </div>
           <button class="log-in-button" type="submit">
             Log In
           </button>
           <div class="lineBreakContainer"></div>
           <button class="google-button" type="button">
-            {/* <img src={googleLogo} class="google-logo" /> */}
+            <img src={googleLogo} class="google-logo" />
             Sign in with Google
           </button>
           <div class="newUserLine">
             <p>New to Solid Auth?</p>
-            <a href="#" onClick={isClient() ? clickFunc : () => {}}>
-              Create New User
-            </a>
+
+            <a href="#">Create New User</a>
           </div>
         </form>
       </div>
