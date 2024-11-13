@@ -32,5 +32,8 @@
   "devDependencies": {
     "vite": "^5.4.4",
     "vite-plugin-solid": "^2.10.2"
+  },
+  "peerDependencies": {
+    "@solidjs/router": "^0.14.7"
   }
 }
