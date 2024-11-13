@@ -1,4 +1,3 @@
-
 import './Sign-up-light.css';
 import { Component, createSignal } from 'solid-js';
 import solidLogo from '/solid-auth-logo.png';
@@ -22,6 +21,7 @@ const SignUpFormLight: Component = () => {
         <div class="loginFormContainer">
           <form class="loginBox">
             <div class="login-image">
+              {/* ToDo enable option for users to pass logo */}
               {/* <img src={solidLogo} alt="solidLogo" /> */}
               <h1>Your Logo Here</h1>
             </div>
@@ -51,8 +51,5 @@ const SignUpFormLight: Component = () => {
         </div>
       );
     };
-
-
-
 
 export default SignUpFormLight;

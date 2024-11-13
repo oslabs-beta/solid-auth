@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import './login-UI.css';
 import { Component, createSignal } from 'solid-js';
 import solidLogo from '/solid-auth-logo.png';
@@ -51,8 +49,5 @@ const LoginForm: Component = () => {
         </div>
       );
     };
-
-
-
 
 export default LoginForm;

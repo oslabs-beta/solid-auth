@@ -1,4 +1,3 @@
-
 import './Sign-up.css';
 import { Component, createSignal } from 'solid-js';
 import solidLogo from '/solid-auth-logo.png';
@@ -50,8 +49,5 @@ const SignUpForm: Component = () => {
         </div>
       );
     };
-
-
-
 
 export default SignUpForm;
