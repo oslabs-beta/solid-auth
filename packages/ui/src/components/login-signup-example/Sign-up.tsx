@@ -1,11 +1,19 @@
 import './Sign-up.css';
 import { Component, createSignal } from 'solid-js';
-import solidLogo from '/solid-auth-logo.png';
-import googleLogo from '/google.png';
-import hideLogo from '/hide.png';
-import { useNavigate } from '@solidjs/router';
+// import solidLogo from '/solid-auth-logo.png';
+// import googleLogo from '/google.png';
+// import hideLogo from '/hide.png';
+import solidLogo from '../../../public/solid-auth-logo.png';
+import googleLogo from '../../../public/google.png';
+import hideLogo from '../../../public/hide.png';
+// import { useNavigate } from '@solidjs/router';
 
-const SignUpForm: Component = () => {
+
+interface SignUpFormProps {
+  newLogin?: () => void;    //optional event handler for the link
+}
+
+export const SignUpForm: Component<SignUpFormProps> = (props) => {
 
     const [loginStatus, setLoginStatus] = createSignal(null)
     const [loginInput, setLoginInput] = createSignal({
@@ -13,9 +21,11 @@ const SignUpForm: Component = () => {
         passwordInput: '',
     });
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleLogin = () => navigate('/login')
+    // const handleLogin = () => {
+    //   navigate('/login-UI');
+    // };
 
     return (
         <div class="loginFormContainer">
@@ -42,7 +52,7 @@ const SignUpForm: Component = () => {
 
               <p>Already have an account?</p>
 
-              <a href="#" onClick={handleLogin}>Log In</a>
+              <a href="#" onClick={props.newLogin}>Log In</a>
 
             </div>
           </form>
@@ -50,4 +60,4 @@ const SignUpForm: Component = () => {
       );
     };
 
-export default SignUpForm;
+// export default SignUpForm;

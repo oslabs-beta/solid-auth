@@ -1,11 +1,16 @@
 import './Sign-up-light.css';
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, onMount, Show } from 'solid-js';
 import solidLogo from '/solid-auth-logo.png';
 import googleLogo from '/google.png';
 import hideLogo from '/hide.png';
-import { useNavigate } from '@solidjs/router';
 
-const SignUpFormLight: Component = () => {
+
+// interface BackToLoginProps {
+//   backToLogin?: () => void;    //optional event handler for the new sign up link
+// }
+// export const SignUpFormLight: Component<BackToLoginProps> = (props) => {
+
+export const SignUpFormLight: Component = () => {
 
     const [loginStatus, setLoginStatus] = createSignal(null)
     const [loginInput, setLoginInput] = createSignal({
@@ -13,11 +18,16 @@ const SignUpFormLight: Component = () => {
         passwordInput: '',
     });
 
-    const navigate = useNavigate();
+    const [isClient, setIsClient] = createSignal(false);
 
-    const handleLogin = () => navigate('/login')
+    onMount(() => {
+      if (typeof window !== 'undefined'){
+        setIsClient(true)
+      }
+    });
 
     return (
+      <Show when={isClient()}>
         <div class="loginFormContainer">
           <form class="loginBox">
             <div class="login-image">
@@ -40,16 +50,10 @@ const SignUpFormLight: Component = () => {
               <img src={googleLogo} class="google-logo" />
               Continue with Google
             </button>
-            <div class='newUserLine'>
-
-              <p>Already have an account?</p>
-
-              <a href="#" onClick={handleLogin}>Log In</a>
-
-            </div>
           </form>
         </div>
+        </Show>
       );
     };
 
-export default SignUpFormLight;
+

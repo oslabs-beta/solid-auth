@@ -1,23 +1,34 @@
 import './login-UI.css';
-import { Component, createSignal } from 'solid-js';
-import solidLogo from '/solid-auth-logo.png';
-import googleLogo from '/google.png';
-import hideLogo from '/hide.png';
-import { useNavigate } from '@solidjs/router';
+import { Component, createSignal, onMount, Show} from 'solid-js';
+import solidLogo from '../../../public/solid-auth-logo.png';
+import googleLogo from '../../../public/google.png';
+import hideLogo from '../../../public/hide.png';
 
-const LoginForm: Component = () => {
+
+
+// interface LoginFormProps {
+//   newSignUp?: () => void;    //optional event handler for the new sign up link
+// }
+// export const LoginForm: Component<LoginFormProps>  = (props) => {
+export const LoginForm: Component = () => {
 
     const [loginStatus, setLoginStatus] = createSignal(null)
     const [loginInput, setLoginInput] = createSignal({
         usernameInput: '',
         passwordInput: '',
     });
+    
+    const [isClient, setIsClient] = createSignal(false);
 
-    const navigate = useNavigate();
+    onMount(() => {
+      if (typeof window !== 'undefined'){
+        setIsClient(true)
+      }
+    });
 
-    const handleCreateNewUser = () => navigate('/sign-up')
 
     return (
+      <Show when={isClient()}>
         <div class="loginFormContainer">
           <form class="loginBox">
             <div class="login-image">
@@ -42,12 +53,13 @@ const LoginForm: Component = () => {
 
               <p>New to Solid Auth?</p>
 
-              <a href="#" onClick={handleCreateNewUser}>Create New User</a>
+              {/* <a href="#" onClick={props.newSignUp}>Create New User</a> */}
 
             </div>
           </form>
         </div>
+        </Show>
       );
     };
 
-export default LoginForm;
+
