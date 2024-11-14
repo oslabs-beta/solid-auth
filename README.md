@@ -1,29 +1,105 @@
 # solid-auth
 
-## Server
+A comprehensive authentication solution for SolidStart applications, providing both server-side authentication logic and pre-built UI components.
 
-This should be a basic description of the server package.
+## Packages
 
-[Server README](./packages/server/README.md)
+### @solid-auth/server
 
-## UI
+Server-side authentication package with session management, user authentication, and security features.
 
-This should be a basic description of the UI package.
+Key features:
 
-[Server README](./packages/UI/README.md)
+- Secure session handling with Vinxi integration
+- Customizable login/register flows
+- Password hashing support
+- TypeScript-first design
 
-## Dev setup
+[Server Documentation](./packages/server/README.md)
 
-### Using npm link with an external app
+### @solid-auth/ui
 
-#### In solid-auth (this repo):
+Ready-to-use authentication UI components with light and dark themes.
 
-Navigate to `packages/server` or `packages/ui` and run `npm link` (do both to link both packages)
+Key features:
 
-_Note_ You can check that this was successful by looking at the node_modules folder. Scroll through the list until you find @solid-auth. Click on it to make sure both packages are listed.
+- Light/Dark theme variations
+- Responsive design
+- Google OAuth integration ready
+- Customizable styling
 
-#### In your app (external repo):
+[UI Documentation](./packages/ui/README.md)
 
-From root, run: `npm link @solid-auth/server @solid-auth/ui`
+## Quick Start
 
-_Note_ check the node_modules folder to ensure these were linked
+```bash
+# Install both packages
+npm install @solid-auth/server @solid-auth/ui
+
+# Additional peer dependencies
+npm install @solidjs/router solid-js vinxi
+```
+
+Basic setup:
+
+```tsx
+// Server setup
+import { createAuthCallbacks } from '@solid-auth/server';
+import { useSession } from 'vinxi/http';
+
+const auth = createAuthCallbacks(useSession);
+
+// UI implementation
+import { LoginFormLight } from '@solid-auth/ui';
+
+export default function AuthPage() {
+  return <LoginFormLight />;
+}
+```
+
+## Development
+
+### Project Structure
+
+```
+solid-auth/
+├── packages/
+│   ├── server/     # Server-side authentication logic
+│   └── ui/         # Authentication UI components
+└── tsconfig.base.json  # Shared TypeScript configuration
+```
+
+### Local Development Setup
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Build packages:
+   ```bash
+   cd packages/server && npm run build
+   cd ../ui && npm run build
+   ```
+
+### Using npm link
+
+To test changes locally with an external app:
+
+1. Link packages:
+   ```bash
+   cd packages/server && npm link
+   cd ../ui && npm link
+   ```
+2. In your app:
+   ```bash
+   npm link @solid-auth/server @solid-auth/ui
+   ```
+
+## Contributing
+
+Contributions welcome! Please feel free to submit a Pull Request.
+
+## License
+
+ISC
