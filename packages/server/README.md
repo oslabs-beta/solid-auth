@@ -1,6 +1,17 @@
 # @solid-auth/server
 
-A backend authentication library for building secure authentication systems, with built-in support for SolidStart applications.
+A secure, flexible authentication library designed for SolidStart applications, providing essential authentication features with TypeScript support.
+
+## Overview
+
+`@solid-auth/server` provides a robust authentication system that includes:
+
+- Session management compatible with SolidStart/Vinxi
+- User authentication (login/register flows)
+- Optional password hashing integration
+- Built-in validation for usernames, passwords, and emails
+- TypeScript support with full type definitions
+- Secure session handling with customizable secrets
 
 ## Installation
 
@@ -8,131 +19,153 @@ A backend authentication library for building secure authentication systems, wit
 npm install @solid-auth/server
 ```
 
-## Features
+## Quick Start
 
-- Session management
-- User authentication (login/register)
-- Password hashing support
-- Username and password validation
-- Email validation utilities
-- TypeScript support
-
-## Usage
-
-### Basic Setup
+Here's a basic example of setting up authentication in a SolidStart application:
 
 ```typescript
 import { createAuthCallbacks } from '@solid-auth/server';
 import { useSession } from 'vinxi/http';
 
-// Create auth callbacks with default configuration
-const authCallbacks = createAuthCallbacks(useSession);
+// Basic setup with default configuration
+const auth = createAuthCallbacks(useSession);
 
-// Or with custom password hashing
-const authCallbacks = createAuthCallbacks(useSession, {
-  hash: async (password) => {
-    /* your hashing logic */
-  },
-  compare: async (password, hashedPassword) => {
-    /* your comparison logic */
-  },
+// Example with bcrypt password hashing
+import bcrypt from 'bcryptjs';
+
+const authWithHashing = createAuthCallbacks(useSession, {
+  hash: (password) => bcrypt.hash(password, 10),
+  compare: (password, hashedPassword) =>
+    bcrypt.compare(password, hashedPassword),
 });
 ```
 
-### Authentication Operations
+## Core Concepts
+
+### 1. Session Management
+
+Sessions are handled through Vinxi's session system. The library automatically manages:
+
+- Session creation and storage
+- User authentication state
+- Secure session updates
 
 ```typescript
-// Login
+// Get current session
+const session = await auth.getSession();
+
+// Access session data
+const userId = session.data.userId;
+
+// Update session
+await session.update((data) => {
+  data.customField = 'value';
+});
+
+// Clear session
+await session.clear();
+```
+
+### 2. User Authentication
+
+#### Login Flow
+
+```typescript
 try {
-  const user = await authCallbacks.login(
+  const user = await auth.login(
     username,
     password,
+    // Your database lookup function
     async (username) => {
-      // Your user lookup logic here
-      return findUserByUsername(username);
+      return await db.user.findUnique({
+        where: { username },
+      });
+    }
+  );
+
+  // Get session to store user ID
+  const session = await auth.getSession();
+  await session.update((data) => {
+    data.userId = user.id.toString();
+  });
+} catch (error) {
+  // Handle login errors
+}
+```
+
+#### Registration Flow
+
+```typescript
+try {
+  const user = await auth.register(
+    username,
+    password,
+    // Lookup function to check for existing users
+    async (username) => {
+      return await db.user.findUnique({
+        where: { username },
+      });
+    },
+    // Creation function to store new user
+    async (username, hashedPassword) => {
+      return await db.user.create({
+        data: {
+          username,
+          password: hashedPassword,
+        },
+      });
     }
   );
 } catch (error) {
-  console.error('Login failed:', error);
+  // Handle registration errors
 }
-
-// Registration
-try {
-  const user = await authCallbacks.register(
-    username,
-    password,
-    async (username) => findUserByUsername(username), // Lookup function
-    async (username, password) => createUser(username, password) // Creation function
-  );
-} catch (error) {
-  console.error('Registration failed:', error);
-}
-
-// Logout
-await authCallbacks.logout();
-
-// Session Management
-const session = await authCallbacks.getSession();
 ```
 
-### Validation
+### 3. Input Validation
+
+The library provides built-in validation functions:
 
 ```typescript
-// Username validation
-const usernameError = authCallbacks.validateUsername(username);
+// Username validation (minimum 3 characters)
+const usernameError = auth.validateUsername(username);
 if (usernameError) {
-  console.error('Invalid username:', usernameError);
+  // Handle invalid username
 }
 
-// Password validation
-const passwordError = authCallbacks.validatePassword(password);
+// Password validation (minimum 6 characters)
+const passwordError = auth.validatePassword(password);
 if (passwordError) {
-  console.error('Invalid password:', passwordError);
+  // Handle invalid password
 }
 
-// Email validation utility
+// Email validation
 import { isValidEmail } from '@solid-auth/server';
-
 if (!isValidEmail(email)) {
-  console.error('Invalid email address');
+  // Handle invalid email
 }
 ```
 
-## API Reference
+## Configuration
 
-### `createAuthCallbacks(useSessionFn, hashingFunctions?)`
+### Environment Variables
 
-Creates an authentication callbacks object.
+```env
+SESSION_SECRET=your_secure_secret_here
+```
 
-Parameters:
-
-- `useSessionFn`: Function that returns a session object
-- `hashingFunctions` (optional): Object containing `hash` and `compare` functions for password handling
-
-Returns an object with the following methods:
-
-#### Authentication Methods
-
-- `login(username, password, userLookupFunction)`: Authenticates a user
-- `register(username, password, userLookupFunction, userCreateFunction)`: Creates a new user
-- `logout()`: Ends the current session
-
-#### Session Management
-
-- `getSession()`: Retrieves current session data
-
-#### Validation Methods
-
-- `validateUsername(username)`: Returns undefined or error message
-- `validatePassword(password)`: Returns undefined or error message
+If `SESSION_SECRET` is not provided, a default value is used in development. Always set a secure secret in production.
 
 ### Types
+
+The library exports these TypeScript interfaces:
 
 ```typescript
 interface User {
   id: number;
   username: string;
   password: string;
+  email?: string;
+  provider?: string;
 }
 
 interface Session {
@@ -143,22 +176,121 @@ interface Session {
   update: (updater: (data: Session['data']) => void) => Promise<void>;
   clear: () => Promise<void>;
 }
+
+interface AuthCallbacks {
+  getSession: () => Promise<Session>;
+  login: (
+    username: string,
+    password: string,
+    userLookupFunction: (username: string) => Promise<User | undefined>
+  ) => Promise<User>;
+  register: (
+    username: string,
+    password: string,
+    userLookupFunction: (username: string) => Promise<User | undefined>,
+    userCreateFunction: (username: string, password: string) => Promise<User>
+  ) => Promise<User>;
+  logout: () => Promise<void>;
+  validateUsername: (username: string) => string | undefined;
+  validatePassword: (password: string) => string | undefined;
+}
 ```
 
-## Environment Variables
+## Security Best Practices
 
-- `SESSION_SECRET`: Secret key for session management (defaults to a placeholder value in development)
+1. **Password Hashing**: Always implement password hashing in production:
 
-## Security Notes
+```typescript
+import bcrypt from 'bcryptjs';
 
-- Always use proper password hashing in production
-- Change the default session secret in production
-- Implement appropriate rate limiting and security measures
-- Store sensitive data securely
+const auth = createAuthCallbacks(useSession, {
+  hash: (password) => bcrypt.hash(password, 10),
+  compare: bcrypt.compare,
+});
+```
+
+2. **Session Security**:
+
+   - Set a strong `SESSION_SECRET` in production
+   - Use HTTPS in production
+   - Implement CSRF protection
+   - Consider session expiration policies
+
+3. **Rate Limiting**: Implement rate limiting for login/register endpoints
+
+4. **Input Validation**: Always validate and sanitize user input before processing
+
+## Common Integration Patterns
+
+### 1. Protected Routes
+
+```typescript
+import { createAuthCallbacks } from '@solid-auth/server';
+import { useSession } from 'vinxi/http';
+import { redirect } from '@solidjs/router';
+
+const auth = createAuthCallbacks(useSession);
+
+export async function protectedLoader() {
+  const session = await auth.getSession();
+  if (!session.data.userId) {
+    throw redirect('/login');
+  }
+  return {};
+}
+```
+
+### 2. User Context
+
+```typescript
+import { createContext, useContext } from 'solid-js';
+import type { User } from '@solid-auth/server';
+
+const UserContext = createContext<User>();
+
+export function UserProvider(props) {
+  // Implement user loading logic
+  return (
+    <UserContext.Provider value={props.user}>
+      {props.children}
+    </UserContext.Provider>
+  );
+}
+```
+
+## Error Handling
+
+The library throws errors in these cases:
+
+- User not found during login
+- Invalid password during login
+- Username already exists during registration
+- Invalid username format
+- Invalid password format
+
+Example error handling:
+
+```typescript
+try {
+  await auth.login(username, password, lookupFn);
+} catch (error) {
+  if (error.message === 'User not found') {
+    // Handle unknown user
+  } else if (error.message === 'Invalid login') {
+    // Handle wrong password
+  }
+}
+```
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
 
 ## License
 
