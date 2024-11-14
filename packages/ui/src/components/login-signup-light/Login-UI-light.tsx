@@ -34,9 +34,8 @@ export const LoginFormLight: Component = () => {
             <div class="login-image">
               {/* <img src={props.logo} alt="Your Logo Here" /> */}
             <h1>Your Logo Here</h1>
-
-            </div>
-            <h2 class="signInText">Sign In</h2>
+          </div>
+          <h2 class="signInText">Sign In</h2>
 
               <input class='form-control' id="usernameInput" type="email" placeholder="Username" />
             <div class='password-container'>
