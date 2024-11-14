@@ -10,7 +10,7 @@ export interface Session {
 export interface User {
   id: number;
   username: string;
-  password?: string | undefined;
+  password: string;
   email?: string;
   provider?: string;
 }
