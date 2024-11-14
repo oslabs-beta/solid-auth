@@ -1,7 +1,7 @@
 import './Login-UI-light.css';
 import { Component, createSignal, Show, onMount } from 'solid-js';
-import googleLogo from '/google.png';
-import hideLogo from '/hide.png';
+import googleLogo from '../../../public/google.png';
+import hideLogo from '../../../public/hide.png';
 
 export const LoginFormLight: Component = () => {
   const [loginStatus, setLoginStatus] = createSignal(null);

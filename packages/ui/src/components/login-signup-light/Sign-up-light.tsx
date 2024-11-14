@@ -1,7 +1,7 @@
 import './Sign-up-light.css';
 import { Component, createSignal, onMount, Show } from 'solid-js';
-import googleLogo from '/google.png';
-import hideLogo from '/hide.png';
+import googleLogo from '../../../public/google.png';
+import hideLogo from '../../../public/hide.png';
 
 export const SignUpFormLight: Component = () => {
   const [loginStatus, setLoginStatus] = createSignal(null);
@@ -9,7 +9,7 @@ export const SignUpFormLight: Component = () => {
     usernameInput: '',
     passwordInput: '',
   });
-
+ 
   const [isClient, setIsClient] = createSignal(false);
 
   onMount(() => {
