@@ -9,7 +9,7 @@ export const SignUpFormLight: Component = () => {
     usernameInput: '',
     passwordInput: '',
   });
-
+ 
   const [isClient, setIsClient] = createSignal(false);
 
   onMount(() => {
