@@ -1,7 +1,7 @@
 import './Login-UI-dark.css';
 import { Component, createSignal, onMount, Show } from 'solid-js';
-import googleLogo from '/google.png';
-import hideLogo from '/hide.png';
+import googleLogo from '../../../public/google.png';
+import hideLogo from '../../../public/hide.png';
 
 export const LoginFormDark: Component = () => {
   const [loginStatus, setLoginStatus] = createSignal(null);
