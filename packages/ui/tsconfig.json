@@ -1,0 +1,15 @@
+//this is extended from the ts base configuration file
+//from the root directory and includes specific configurations for this package
+
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js",
+        "declaration": true,
+        "emitDeclarationOnly": false,
+        "types": ["solid-js", "node"],
+    },
+    "include": ["src/**/*", "public/**/*"]
+}
