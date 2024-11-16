@@ -1,10 +1,10 @@
-# @solid-auth/server
+# @solidauth/server
 
 A secure, flexible authentication library designed for SolidStart applications, providing essential authentication features with TypeScript support.
 
 ## Overview
 
-`@solid-auth/server` provides a robust authentication system that includes:
+`@solidauth/server` provides a robust authentication system that includes:
 
 - Session management compatible with SolidStart/Vinxi
 - User authentication (login/register flows)
@@ -16,7 +16,7 @@ A secure, flexible authentication library designed for SolidStart applications, 
 ## Installation
 
 ```bash
-npm install @solid-auth/server
+npm install @solidauth/server
 ```
 
 ## Quick Start
@@ -24,7 +24,7 @@ npm install @solid-auth/server
 Here's a basic example of setting up authentication in a SolidStart application:
 
 ```typescript
-import { createAuthCallbacks } from '@solid-auth/server';
+import { createAuthCallbacks } from '@solidauth/server';
 import { useSession } from 'vinxi/http';
 
 // Basic setup with default configuration
@@ -139,7 +139,7 @@ if (passwordError) {
 }
 
 // Email validation
-import { isValidEmail } from '@solid-auth/server';
+import { isValidEmail } from '@solidauth/server';
 if (!isValidEmail(email)) {
   // Handle invalid email
 }
@@ -225,7 +225,7 @@ const auth = createAuthCallbacks(useSession, {
 ### 1. Protected Routes
 
 ```typescript
-import { createAuthCallbacks } from '@solid-auth/server';
+import { createAuthCallbacks } from '@solidauth/server';
 import { useSession } from 'vinxi/http';
 import { redirect } from '@solidjs/router';
 
@@ -244,7 +244,7 @@ export async function protectedLoader() {
 
 ```typescript
 import { createContext, useContext } from 'solid-js';
-import type { User } from '@solid-auth/server';
+import type { User } from '@solidauth/server';
 
 const UserContext = createContext<User>();
 
