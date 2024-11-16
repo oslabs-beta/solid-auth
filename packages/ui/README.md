@@ -1,4 +1,4 @@
-# @solid-auth/ui
+# @solidauth/ui
 
 A modern, customizable authentication UI component library for SolidStart applications. Provides ready-to-use login and signup forms with both light and dark themes.
 
@@ -14,7 +14,7 @@ A modern, customizable authentication UI component library for SolidStart applic
 ## Installation
 
 ```bash
-npm install @solid-auth/ui @solidjs/router
+npm install @solidauth/ui @solidjs/router
 ```
 
 ## Usage
@@ -22,9 +22,9 @@ npm install @solid-auth/ui @solidjs/router
 Import and use the components in your SolidStart application:
 
 ```tsx
-import { LoginFormLight, SignUpFormLight } from '@solid-auth/ui';
+import { LoginFormLight, SignUpFormLight } from '@solidauth/ui';
 // or
-import { LoginFormDark, SignUpFormDark } from '@solid-auth/ui';
+import { LoginFormDark, SignUpFormDark } from '@solidauth/ui';
 
 // In your component:
 export default function AuthPage() {

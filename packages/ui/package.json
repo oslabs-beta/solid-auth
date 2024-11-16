@@ -1,7 +1,7 @@
 {
-  "name": "@solid-auth/ui",
+  "name": "@solidauth/ui",
   "version": "1.0.0",
-  "description": "Front end login UI components for SolidStartJS.",
+  "description": "UI components for SolidStartJS",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
