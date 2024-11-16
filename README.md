@@ -1,10 +1,10 @@
-# solid-auth
+# solidauth
 
 A comprehensive authentication solution for SolidStart applications, providing both server-side authentication logic and pre-built UI components.
 
 ## Packages
 
-### @solid-auth/server
+### @solidauth/server
 
 Server-side authentication package with session management, user authentication, and security features.
 
@@ -17,7 +17,7 @@ Key features:
 
 [Server Documentation](./packages/server/README.md)
 
-### @solid-auth/ui
+### @solidauth/ui
 
 Ready-to-use authentication UI components with light and dark themes.
 
@@ -34,7 +34,7 @@ Key features:
 
 ```bash
 # Install both packages
-npm install @solid-auth/server @solid-auth/ui
+npm install @solidauth/server @solidauth/ui
 
 # Additional peer dependencies
 npm install @solidjs/router solid-js vinxi
@@ -44,13 +44,13 @@ Basic setup:
 
 ```tsx
 // Server setup
-import { createAuthCallbacks } from '@solid-auth/server';
+import { createAuthCallbacks } from '@solidauth/server';
 import { useSession } from 'vinxi/http';
 
 const auth = createAuthCallbacks(useSession);
 
 // UI implementation
-import { LoginFormLight } from '@solid-auth/ui';
+import { LoginFormLight } from '@solidauth/ui';
 
 export default function AuthPage() {
   return <LoginFormLight />;
@@ -62,7 +62,7 @@ export default function AuthPage() {
 ### Project Structure
 
 ```
-solid-auth/
+solidauth/
 ├── packages/
 │   ├── server/     # Server-side authentication logic
 │   └── ui/         # Authentication UI components
@@ -93,7 +93,7 @@ To test changes locally with an external app:
    ```
 2. In your app:
    ```bash
-   npm link @solid-auth/server @solid-auth/ui
+   npm link @solidauth/server @solidauth/ui
    ```
 
 ## Contributing

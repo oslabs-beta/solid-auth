@@ -1,7 +1,7 @@
 {
-  "name": "@solid-auth/server",
+  "name": "@solidauth/server",
   "version": "1.0.0",
-  "description": "middleware for solidstart auth",
+  "description": "authentication tools for SolidStart",
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
   "keywords": [
     "solidstart"
   ],
-  "author": "Solid Auth",
+  "author": "SolidAuth",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.7.8",
